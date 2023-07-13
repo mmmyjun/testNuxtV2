@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .current {
+            color: red;
+        }
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.js"></script>
+</head>
+<body>
+    <ul id="navigation">
+        <li><a href="home.html">home.html</a></li>
+        <li><a href="about.html">about.html</a></li>
+    </ul>
+    <div id="content"></div>
+    <script>
+        $(document).ready(function() {
+            if (location.hash) {
+                var hashPage = location.hash.split('#')
+                $('#navigation a').each(function() {
+                    if ($(this).attr('href') == hashPage[1]) {
+                        $(this).addClass('current');
+                        return false
+                    }
+                })
+                $('#content').load(hashPage[1])
+            }
+
+            // 工具栏
+            $('#navigation a').click(function() {
+                var page = $(this).attr('href');
+                $('#content').load(page);
+                // 添加hash路由后缀
+                location.hash = '#' + page
+                return false
+            })
+        })
+    </script>
+</body>
+</html>

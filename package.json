@@ -1,0 +1,32 @@
+{
+  "name": "practice",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "set NODE_OPTIONS=--openssl-legacy-provider && nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "installAll": "npm install npm-run-all && npm-run-all --parallel install:*",
+    "install:master": "npm install",
+    "install:child": "cd qw && npm install",
+    "runAll": "npm-run-all --parallel run:*",
+    "run:main": "npm run dev",
+    "run:qiankun": "cd qw && npm run dev"
+  },
+  "dependencies": {
+    "@emotion/css": "^11.10.5",
+    "@nuxtjs/axios": "^5.13.6",
+    "core-js": "^3.25.3",
+    "element-ui": "^2.15.10",
+    "nuxt": "^2.16.2",
+    "qiankun": "^2.8.4",
+    "vue": "^2.7.10",
+    "vue-highlightjs": "^1.3.3",
+    "vue-server-renderer": "^2.7.10",
+    "vue-template-compiler": "^2.7.10"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

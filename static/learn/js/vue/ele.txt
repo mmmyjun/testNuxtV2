@@ -1,0 +1,5 @@
+Nrm ls 
+nrm use pacvue  
+run dist    
+git add.   
+npm publish

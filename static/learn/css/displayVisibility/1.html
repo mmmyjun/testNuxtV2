@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .p2 {
+            background: blue;
+             margin-right: 10px;
+        }
+        .p2:hover {
+            background: red;
+            margin-right: 50px;
+            transition: margin-right 2s ease-in-out, background red 1s ease;
+        }
+        .p3 {
+            opacity: 1;
+        }
+        .p3:hover {
+            background: green;
+            margin-right: 50px;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 3s, opacity 2s;
+        }
+    </style>
+</head>
+
+<body>
+    display:none 会引起回流(重排)和重绘 visibility:hidden 会引起重绘 <br>
+
+    重绘不一定需要重排（比如颜色的改变），重排必然导致重绘（比如改变网页位置）
+    <input type="text">
+    <img src="" alt="">
+    <p style="visibility:hidden" onclick="alert(1)">11111</p>
+    <p class="p2">22222</p>
+    <p class="p3">333</p>
+
+</body>
+
+</html>

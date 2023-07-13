@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>https://blog.csdn.net/weixin_43974265/article/details/115740672</title>
+    <style>
+        img {
+            width: 300px;
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="" class="lazyload-img" data-url="../../../img/1.png">
+    <img src="" class="lazyload-img" data-url="../../../img/2.png">
+    <img src="" class="lazyload-img" data-url="../../../img/3.png">
+    <img src="" class="lazyload-img" data-url="../../../img/4.png">
+
+    <script>
+        let viewport = document.documentElement;
+        let imgArr = [].slice.call(document.querySelectorAll('.lazyload-img'));
+        // 该函数用来判断某一个元素是否在可视区域
+        function isVisible(element) {
+            let rect = element.getBoundingClientRect();
+            // 用户不管是从上向下、从下向上、从左向右、从右向左滑动，都可以判断当前元素是否在可视区域 
+            return rect.top < viewport.clientHeight && rect.bottom > 0 && rect.left < viewport.clientWidth && rect.right > 0;
+        }
+        // 该函数动态设置图片的src属性，动态加载图片
+        function lazyloadImg() {
+            for (let i = 0; i < imgArr.length; i++) {
+                let img = imgArr[i];
+                if (isVisible(img)) {
+                    img.src = img.getAttribute('data-url');
+                    imgArr.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+        // 一开始先执行一次，把在第一次进入页面时在可视区域的图片加载出来
+        lazyloadImg();
+        let timer = null;
+        document.addEventListener('scroll', function () {
+            // 一个简单的防抖处理 
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(() => {
+                // 页面滚动的时候，不断有新的图片进入可视区域，此时再调用lazyloadImg函数 
+                lazyloadImg();
+            }, 100);
+        })
+    </script>
+</body>
+
+</html>

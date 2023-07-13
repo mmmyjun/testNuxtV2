@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>https://js.do/shy2850/switcher</title>
+</head>
+
+<body>
+    <style>
+        .switcher {
+            display: none;
+        }
+
+        .switcher+label {
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            width: 54px;
+            height: 32px;
+            border-radius: 17px;
+            border: 1px solid #e2e2e2;
+            transition: all .5s ease;
+        }
+
+        .switcher+label:after {
+            position: absolute;
+            content: " ";
+            width: 28px;
+            height: 28px;
+            border-radius: 14px;
+            background: #d2d2d2;
+            left: 2px;
+            top: 2px;
+            transition: all .5s ease;
+        }
+
+        .switcher:checked+label {
+            background: #06f;
+            border-color: #06f;
+            box-shadow: 0 0 10px #aaa;
+        }
+
+        .switcher:checked+label:after {
+            background: #fff;
+            left: 24px;
+        }
+    </style>
+
+    <input type="checkbox" class="switcher" id="switcher" />
+    <label for="switcher">
+    </label>
+
+    <script>
+        var switchOn = 'true' === localStorage.switchOn
+        switcher.checked = switchOn
+        switcher.addEventListener('click', function () {
+            localStorage.switchOn = this.checked ? 'true' : ''
+        })
+    </script>
+
+</body>
+
+</html>

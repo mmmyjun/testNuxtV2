@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function throttle(fn, delay = 200) {
+            let timer = null;
+            return function () {
+                if (timer) return;
+                timer = setTimeout(() => {
+                    fn.apply(this, arguments);
+                    timer = null;
+                }, delay);
+            }
+        }
+        // 使用for循环批量创建img，html中可没有v-for可以使用
+        for (let index = 0; index < 10; index++) {
+            let img = document.createElement("img");
+            img.src = "./loading.gif";
+            img.dataset.src = "./dog.jfif"; // 由于我们是通过js创建的，因此就无法直接使用data-*，如果是在html上面，需要添加此属性
+            document.body.appendChild(img);
+            img = null;
+        }
+        // 节流
+        function throttle(fn, delay = 200) {
+            let timer = null;
+            return function () {
+                if (timer) return;
+                timer = setTimeout(() => {
+                    fn.apply(this, arguments);
+                    timer = null;
+                }, delay);
+            };
+        }
+        // 懒加载-回调函数
+        function lazyLoad() {
+            const imgs = document.querySelectorAll('img[data-src]');
+            if (!imgs.length) return;
+            imgs.forEach(img => {
+                const rect = img.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src'); // 我们是通过img[data-src]查找所有img标签的，渲染后就删除data-src可减少forEach循环的计算成本
+                }
+            })
+        }
+        // 全局监听scroll滚动事件
+        window.addEventListener('scroll', throttle(() => {
+            lazyLoad();
+        }, 100));
+        // 初始化的时候执行一下加载图片的函数
+        lazyLoad();
+    </script>
+</body>
+
+</html>

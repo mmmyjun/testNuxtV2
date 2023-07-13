@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    继承方式
+    <script>
+        // 原型
+        console.log('原型链继承:prototype================================')
+        function P1() {
+            this.sex = 'male';
+            this.age = 3;
+            this.color = ['red']
+            this.saySex = () => { console.log('说下性别', this.sex) }
+        }
+        P1.prototype.sayAge = () => { console.log('说下年龄', this.age) }
+        P1.prototype.friends = ['qq']
+        let p1 = new P1();
+        let p2 = new P1();
+        p1.color.push('blue')
+        p1.friends.push('ww')
+        console.log('p1 p2', p1, p2)
+        
+    </script>
+</body>
+</html>

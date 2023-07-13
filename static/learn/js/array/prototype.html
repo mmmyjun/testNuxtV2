@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="clickIt(event)">点击</button>
+    <script>
+        console.dir(Array)
+        var arr = []
+        console.dir(arr)
+
+        // Array.prototype.__proto__.constructor === Object
+
+        // Array.prototype.constructor == Array
+
+        // arr.__proto__ == Array.prototype
+        // arr.constructor == Array
+        // arr.constructor == arr.__proto__.constructor
+        // arr.__proto__.constructor == Array
+
+        // arr.__proto__.push === arr.push
+        
+
+
+        // console.log(Object.keys(arr))
+        // console.log(Object.getOwnPropertyNames(arr))
+        // console.log(Object.getOwnPropertyDescriptors(arr))
+        // console.log(Object.getOwnPropertyDescriptor(arr, 'concat'))
+
+        function clickIt(e) {
+            console.dir(e)
+            console.log(e.altKey)
+            // console.log(Object.keys(e))
+            // console.log(Object.getOwnPropertyNames(e))
+            // console.log(Object.getOwnPropertyDescriptors(e))
+            // console.log(Object.getOwnPropertyDescriptor(e, 'length'))
+            // console.log('altKey' in e)
+            // console.log('altKey' in e && e.hasOwnProperty('altKey'))
+        }
+
+
+
+        var array = ['house', 'car', 'money'];
+        var arrayLike = {
+            0: 'house',
+            1: 'car',
+            2: 'money',
+            length: 3
+        }
+        //读取
+        console.log(array[0]); // house
+        console.log(arrayLike[0]); // house
+
+        array[0] = 'new house';
+        arrayLike[0] = 'new house';
+
+        //长度
+        console.log(array.length); // 3
+        console.log(arrayLike.length); // 3
+
+        //遍历
+        for (var i = 0, len = array.length; i < len; i++) {
+        }
+        for (var i = 0, len = arrayLike.length; i < len; i++) {
+        }
+
+    </script>
+</body>
+
+</html>

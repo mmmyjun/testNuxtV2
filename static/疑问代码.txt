@@ -1,0 +1,37 @@
+// p211
+var dest = {
+    a: 1
+    get a() {
+        console.log('get---', this.a)
+        return this.a
+    },
+    set a(n) {
+        console.log('set-----',n)
+        this.a = n
+    }
+}
+Object.getOwnPropertyDescriptors(dest)
+var bks = {}
+Object.defineProperties(bks, {
+    y_: {
+        value: 7
+    },
+    edit: {
+        value: 1
+    },
+    year: {
+        get() {
+            console.log('y get')
+            return this.y_;
+        },
+        set(n) {
+            console.log('y set-----',n)
+            this.edit = n > 2018 ? 18 : n - 2000
+            this.y_ = n > 2018 ? 2018 : n
+        }
+    }
+})
+Object.getOwnPropertyDescriptors(bks)
+
+
+

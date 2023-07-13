@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Animal {
+            name = 'qq'
+            age = 0;
+            sayAge(age) {
+                this.age = age
+            }
+        }
+        class Cat extends Animal {
+            constructor(age) {
+                super(age)
+            }
+            sayAge(age) {
+                // super.sayAge(age)
+                // this.age = age
+                this.sex = age
+            }
+        }
+        var cat = new Cat()
+        cat.sayAge(5)
+        console.log(cat)
+
+        let Greeter = (function () {
+            function Greeter(message) {
+                this.greeting = message;
+            }
+            Greeter.prototype.greet = function () {
+                return "Hello, " + this.greeting;
+            };
+            return Greeter;
+        })();
+
+        // var test = (function(params) {
+        //     function qq() {
+        //         console.log('哈哈qq')
+        //     }
+        //     qq()
+        // })()
+        // test();
+
+        var data = () => {
+            return function (params) {
+                return {
+                    age: 3,
+                    sex: '1'
+                }
+            }
+        }
+
+        // Object.defineProperties(obj, )
+
+
+        class House {
+            constructor() {
+                this.age = 1;
+                this.door = 3;
+            }
+
+            #hasChild = 2;
+            #sayAge = () => {
+                console.log('说出年龄', this.age)
+            }
+
+            getAge() {
+                console.log('多大了', this.age)
+            }
+        }
+        House.prototype.selfParent = () => {
+            console.log('父的原型方法', this.door)
+            return this.door;
+        }
+        class ChildHouse extends House {
+            constructor() {
+                super()
+            }
+            sayParentAge() {
+                // return super.#sayAge()
+            }
+        }
+        var cc = new ChildHouse();
+        console.log(cc)
+        console.dir(cc)
+
+
+        // ts class !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // Private: 只在基类内部可用
+        // protected: 可在基类和派生类的内部用
+        // static: 可在基类和派生类的内部和类上用
+
+        // class Animal {
+        //     private nn: string;
+        //     age: number;
+        //     protected sex: string;
+        //     static zoom: string;
+        //     constructor(theName: string, theSex: string) { this.nn = theName; this.sex = theSex; }
+        // }
+        // let ani = new Animal("Cat", '1');
+        // class Dog extends Animal {
+        //     sayName() {
+        //         this.sex = "Doghh";
+        //     }
+        // }
+        // let dog = new Dog('kk', '2')
+
+
+        // p252
+        function TestPer() {
+            this.age = 3;
+            this.sex = false;
+            // return {
+            //     age: this.age,
+            //     sex: this.sex
+            // }
+            console.log(TestPer.nn, this.name)
+        }
+        TestPer.prototype.name = 'name~~'
+        TestPer.nn = 'nn~~~'
+        // console.log(tper) // Cannot access 'tper' before initialization
+        let tper = new TestPer()
+        // console.log(tper)
+        // console.log(tper instanceof TestPer)
+        // TestPer.name = 'new name==' => 并没有改变
+        // console.log(TestPer.name)
+    </script>
+</body>
+
+</html>

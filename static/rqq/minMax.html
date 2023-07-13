@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // commonMultiple 最小公倍数, Math.max(a, b) <= x <= a*b
+        function getMin(a, b) {
+            let left = Math.max(a, b);
+            let right = a * b;
+            let result;
+            for (let i = left; i <= right; i++) {
+                if (i % a == 0 && i % b == 0) {
+                    result = i;
+                    return result;
+                }
+            }
+            return result;
+        }
+        console.log(getMin(4, 6))
+        // commonDivisor 最大公约数, 1 <= x <= Math.min(a, b)
+        function getMax(a, b) {
+            let left = 1;
+            let right = Math.min(a, b);
+            let result;
+            for (let i = left; i <= right; i++) {
+                if ((a % i == 0 || a % i == a) && (b % i == 0 || b % i == b)) {
+                    result = i;
+                }
+            }
+            return result;
+        }
+        console.log(getMax(4, 6))
+    </script>
+</body>
+
+</html>

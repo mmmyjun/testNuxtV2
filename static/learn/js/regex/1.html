@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 查找重复的单词：
+        var str = "Is is thev a going up up up up up";
+        // var patt1 = /([a-z]+) \1/igm;
+        // var patt1 = /([a-z]+)(\s\1)+/igm;
+        // var patt1 = /([a-z]+)( \1)+/igm;
+        var patt1 = /(\w+)(\s\1)+/igm;
+        // var patt1 = /(\w+)(\s\1)+/igm;
+        console.log(str.match(patt1));
+
+
+        var res = 'is is go up up up up'.split(' ').filter((t, i, a) => t === a[i-1] || t === a[i+1]).join()
+        console.log(res)
+        var res2 = 'is is go up up up up'.replace(/(\w+)((\s\1)+)*/g, (a,b,c) => c ? b + c : '')
+        console.log('诶嘿',res2.replace(/(\w+)((\s\1)+)*/g, (a,b,c) =>  {
+            console.log('第一个', a,'第二个',b,'第三个',c)
+            return c ? b + c : ''
+        }))
+
+
+        // 一个数组对象。'x' 产生一个 'on' 状态，'-'（连接符）产生一个 'off' 状态，而 '_'（下划线）表示 'on' 状态的长度。
+        var str = 'x-x_';
+        var retArr = [];
+        console.log('匹配',str.match(/(x_*)|(-)/g) )
+        str.replace(/(x_*)|(-)/g, function(match, p1, p2) {
+            console.log(match,p1,p2)
+        if (p1) { retArr.push({ on: true, length: p1.length }); }
+        if (p2) { retArr.push({ on: false, length: 1 }); }
+        });
+        console.log(retArr);
+
+    </script>
+</body>
+
+</html>

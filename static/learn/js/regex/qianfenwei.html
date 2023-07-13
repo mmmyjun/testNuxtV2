@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 怎么把一个数字变成千分位，最多有两位小数
+        let st = '7654321.678'.split('.')
+        let s1 = st[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,')
+        let s2 =  st[1] ? '.' + st[1].replace(/(\d{1,2})(\d*)/, '$1') : ''
+        console.log(s1 + s2)
+
+
+        // 这种不好，不要replace里再嵌套正则
+        // const replacerF = (match, p1, p2) => {
+        //     console.log(p1, p2)
+        //     return p1.replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,') + (p2 ? '.' + st[1].replace(/(\d{1,2})(\d*)/, '$1') : '')
+        // }
+        // let sp = '7654321.678'.replace(/(\d+)(\.?\d*)/, replacerF)
+        // console.log(sp)
+
+        
+        console.log('7654321.678'.replace(/\d{1,3}(?=(\d{3})+(\.|$))/g, function(s) {
+            return s+','
+        }))
+
+        const fmtNumber = (num = 0, fixed = 2) => num.toFixed(fixed).replace(/(\d)(?=(\d{3})+($|\.))/g, '$1,');
+        console.log(fmtNumber(7654321.678));
+
+        // 可以正确验证以141-143开头的总位数为5位的数字
+        // /^14[1-3]\d{2}$/.test(14189) 
+
+        console.log('UR==',new URL('https://jira.jirapac.tech/browse/PCS-953'));
+        
+
+        
+    </script>
+</body>
+</html>

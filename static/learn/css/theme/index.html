@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="a.css" />
+    <title>Document</title>
+    <script class="inScript" type="text/javascript" src="a.js"></script>
+</head>
+<body>
+    <div class="testParentContainer">
+        主题
+    </div>
+    <button type="button" onclick="toggleTheme()">切换主题色</button><br>
+
+    <button type="button" onclick="toggleJs()">切换js</button>
+    <button onclick="testReplaceJs()">testReplaceJs</button>
+    <script type="text/javascript">
+        function toggleTheme() {
+            if (document.querySelector('link').href.slice(-5) == 'a.css') {
+                document.querySelector('link').href = document.querySelector('link').href.slice(0, -5) + 'b.css'
+            } else {
+                document.querySelector('link').href = document.querySelector('link').href.slice(0, -5) + 'a.css'
+            }
+        }
+        function toggleJs(params) {
+            if (document.querySelector('.inScript').src.slice(-4) == 'a.js'){
+                document.querySelector('.inScript').src = document.querySelector('.inScript').src.slice(0, -4) + 'b.js'
+            } else {
+                document.querySelector('.inScript').src = document.querySelector('.inScript').src.slice(0, -4) + 'a.js'
+            }
+            // testReplaceJs
+        }
+    </script>
+</body>
+</html>

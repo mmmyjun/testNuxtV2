@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const url = new URL(url[, base]) 
+        // url: 如果url 是相对 URL，则会将 base 用作基准 URL。如果 url 是绝对 URL，则无论参数base是否存在，都将被忽略。
+        // base 可选    在 url 是相对 URL 时，它才会起效。如果未指定，则默认为 ''。
+        console.log(new URL('/en-US/docs', "https://developer.mozilla.org/fr-FR/toto"))
+        console.log(new URL("//foo.com", "https://example.com"))
+        let url = new URL('http://www.example.com?a=1&b=3');
+        let searP = url.searchParams
+        console.log('参数a', searP.get('a'))
+        console.log('参数b', searP.get('b'))
+        console.log('url==', url)
+        console.dir(url);
+        console.log('迭代器', searP[Symbol.iterator])
+        for (let [k, v] of searP) {
+            console.log('param', k, v);
+        }
+        let str = 'qw'
+        console.dir(str.__proto__)
+        console.dir(str[Symbol.iterator]())
+
+    </script>
+</body>
+
+</html>

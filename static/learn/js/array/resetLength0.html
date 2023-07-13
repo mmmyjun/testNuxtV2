@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function func(params) {
+            
+        }
+        const fn = function (params) {
+            console.log('fn===')
+        }
+        let arr = [3,5]
+        const resetLength0 = (ary) => {
+            ary.length = 0;
+        }
+        resetLength0(arr)
+        console.log(arr)
+
+        console.log('@@@@@@@@@@@@@@')
+        console.dir(fn)
+        console.log(fn.prototype)
+        console.dir(fn.constructor)
+        console.log(typeof fn)
+
+        console.log('********************')
+        console.dir(func)
+        console.log(func.prototype)
+        console.dir(func.constructor)
+        console.log(typeof func)
+
+        console.log('-----------------')
+
+        console.dir(resetLength0)
+        console.log(resetLength0.prototype)
+        console.dir(resetLength0.constructor)
+        console.log(typeof resetLength0)
+    </script>
+</body>
+</html>

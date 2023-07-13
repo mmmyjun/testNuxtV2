@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = ['qq', 'ww', 'ee']
+        // arr.forEach(async function(item, index, ary){
+        //     console.log(1)
+        //     await 99999
+        //     console.log(3)
+        // })
+        // console.log(2)
+
+        var age = 5;
+        var obj = {
+            age: 3,
+            func: function (params) {
+                console.log(params?.age)
+                console.log(this.age)
+            }
+        }
+        var test = obj.func
+        test()
+    </script>
+</body>
+</html>

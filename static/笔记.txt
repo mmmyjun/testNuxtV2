@@ -1,0 +1,79 @@
+set NODE_OPTIONS=--openssl-legacy-provider
+
+npm install --save vue-highlightjs
+<div class="promiseAll">
+    <!-- If your source-code lives in a variable called 'sourcecode' -->
+    <pre v-highlightjs="sourcecode"><code class="javascript"> </code></pre>
+    <pre v-highlightjs>
+        <code class="javascript"> 
+        var test = 3;
+        test = 5
+        </code>
+    </pre>
+    <!-- If you want to highlight hardcoded source-code -->
+    <pre v-highlightjs><code class="javascript">const s = new Date().toString()</code></pre>
+</div>
+sourcecode: 'let a = 1;\nconsole.log(2)'
+
+https://github.com/emotion-js/emotion
+https://emotion.sh/docs/introduction
+css in js之emotion npm i @emotion/css
+
+
+ssr:server-side rendering服务端生成动态html（字符串）客户端注水,依赖node运行时（组件编译,比如created）
+csr:完全客户端渲染
+ssg:static-site generation静态网站生成:服务端生成静态页面客户端渲染；ssr可以降级成ssg就不需要node运行时
+
+yarn add @nuxtjs/axios
+modules: ['@nuxtjs/axios']
+
+target: 'static' // default is 'server'  => 有报错记得回来解决
+npm install fs fs-extra --save 
+
+
+npm-run-all——并行或顺序运行多个npm脚本的CLI工具
+yarn add npm-run-all -D
+run-p（并行执行）
+run-s（顺序执行）
+npm-run-all --parallel install:*
+
+练习ts回头看 => ???
+
+
+ts官网 https://www.tslang.cn/samples/index.html
+
+node cookie  https://www.jb51.net/article/239346.htm => ????
+
+export function a
+export function b
+等价于=>
+export {
+    a, b
+}
+import {a,b}
+import * as c
+
+
+微任务宏任务 promise结合requestAnimationFrame用法示例 https://blog.csdn.net/sinat_40572875/article/details/127828077  ？？？？？？？？？？？？
+ setTimeout(()=>console.log("d"), 0)
+        var r = new Promise(function(resolve, reject){
+            resolve()
+        });
+        r.then(() => {
+                var begin = Date.now();
+                while(Date.now() - begin < 1000);
+                console.log("c1")
+                new Promise(function(resolve, reject){
+                    resolve()
+                }).then(() => console.log("c2"))
+
+        });
+无心:https://juejin.cn/post/6844903638238756878 以及非常详细的promise讲解 https://juejin.cn/post/6945319439772434469   https://juejin.cn/column/6960559453037199391
+winty的Eric:极客时间，李兵，浏览器工作原理与实践
+
+
+
+ 
+
+
+前端性能优化 https://www.yuque.com/wuxintomgxue/chgexa/vymsu6?singleDoc#jwnWy

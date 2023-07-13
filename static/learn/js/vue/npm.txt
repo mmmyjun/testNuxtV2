@@ -1,0 +1,14 @@
+npm view vue-router version
+
+npx vue -V 
+
+npx是npm包执行器，可以避免全局安装包，随时使用依赖包
+
+
+npx和npm区别在哪儿呢？===========================================
+kim===>
+npx优先选本地模块 直接用命令行 一般是全局的  比如 webpack 和 npx webpack 你得到的版本不一样
+1. npx会自动安装命令行 2.npx 会优先寻找本地命令行
+npm webpack 等于 npx webpack
+
+npx npm区别说的清楚些的:http://newsn.com.cn/say/npx.html

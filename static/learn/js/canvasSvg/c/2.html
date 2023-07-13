@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        // function draw() {
+        //   var canvas = document.getElementById("canvas");
+        //   if (canvas.getContext) {
+        //     var ctx = canvas.getContext("2d");
+
+        //     ctx.fillStyle = "rgb(200,0,0)";
+        //     ctx.fillRect (10, 10, 55, 50);
+
+        //     ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        //     ctx.fillRect (30, 30, 55, 50);
+        //   }
+        // }
+        function draw() {
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                // ctx.fillStyle = "rgb(200,0,0)";
+                // ctx.fillRect (10, 10, 55, 50);
+                // ctx.strokeStyle = "rgba(0, 0, 200, 0.5)";
+                // ctx.lineWidth = 10;
+                // ctx.strokeRect(20, 40, 50, 50);
+                // // 第二个
+                // ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+                // ctx.fillRect (80, 30, 55, 50);
+                // ctx.strokeStyle = "rgb(200,0,0)";
+                // ctx.lineWidth = 5;
+                // ctx.strokeRect(90, 50, 50, 50);
+
+                // 三角形
+                // ctx.beginPath();
+                // ctx.moveTo(75, 50);
+                // ctx.lineTo(100, 75);
+                // ctx.lineTo(100, 25);
+                // ctx.fill();
+
+                // arc语法: arc(x, y, radius, startAngle, endAngle, anticlockwise)
+                // 画一个以（x,y）为圆心的以 radius 为半径的圆弧（圆），从 startAngle 开始到 endAngle 结束，按照 anticlockwise 给定的方向（默认为顺时针）来生成。
+                // ctx.beginPath();
+                // ctx.arc(75, 75, 50, 0, Math.PI , true); // 绘制
+                // ctx.moveTo(110, 75);
+                // ctx.arc(75, 75, 35, 0, Math.PI, false);   // 口 (顺时针)
+                // ctx.moveTo(65, 65);
+                // ctx.strokeStyle="red"
+                // ctx.arc(60, 65, 5, 0, Math.PI * 2, true);  // 左眼
+                // ctx.stroke();
+                // ctx.beginPath();
+                // ctx.moveTo(95, 65);
+                // ctx.arc(90, 65, 5, 0, Math.PI , true);  // 右眼
+                // ctx.strokeStyle="green"
+                // ctx.stroke();
+
+
+                // 填充三角形
+                // ctx.beginPath();
+                // ctx.moveTo(25, 25);
+                // ctx.lineTo(105, 25);
+                // ctx.lineTo(25, 105);
+                // ctx.fill();
+                // // 描边三角形
+                // ctx.beginPath();
+                // ctx.moveTo(125, 125);
+                // ctx.lineTo(125, 45);
+                // ctx.lineTo(45, 125);
+                // ctx.closePath();
+                // ctx.stroke();
+
+
+                var _t = 0;
+                function _draw() {
+                    ctx.clearRect(0, 0, 150, 150)
+                    _t += .1;
+
+                    ctx.beginPath()
+                    ctx.moveTo(0, canvas.height / 2)
+                    ctx.strokeStyle = 'green'
+                    ctx.lineWidth = 2;
+
+                    for (var i = 0; i < canvas.width; i++) {
+                        console.log(i, Math.sin(i * .2 + _t) * canvas.height / 4 + canvas.height / 2)
+                        // 0 69.61021954600237
+                        // 1 77.09040411052669
+                        // 2 84.487250859817
+                        // 3 91.50587085607673
+                        // 4 97.86645386859313
+                        // 5 103.31542352463579
+                        // 6 107.63554659923739
+                        // 7 110.65459341835059
+                        // 8 112.25220411244969
+                        // 9 112.36468698471347
+                        // 10 110.98755769798501
+                        ctx.lineTo(i, Math.sin(i * .2 + _t) * canvas.height / 4 + canvas.height / 2)
+                    }
+
+                    ctx.stroke();
+                    window.requestAnimationFrame(_draw)
+                }
+                // _draw()
+
+
+
+                // for(var i = 0; i < 4; i++){
+                //   for(var j = 0; j < 3; j++){
+                //     ctx.beginPath();
+                //     var x = 25 + j * 50; // x 坐标值
+                //     var y = 25 + i * 50; // y 坐标值
+                //     var radius = 20; // 圆弧半径
+                //     var startAngle = 0; // 开始点
+                //     var endAngle = Math.PI + (Math.PI * j) / 2; // 结束点
+                //     var anticlockwise = i % 2 == 0 ? false : true; // 顺时针或逆时针
+
+                //     console.log(x, y, radius, startAngle, endAngle, anticlockwise)
+                //     console.log('结束', endAngle/Math.PI)
+                //     ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+
+                //     if (i>1){
+                //       ctx.fill();
+                //     } else {
+                //       ctx.stroke();
+                //     }
+                //   }
+                // }
+
+
+                // 二次贝塞尔曲线
+                // quadraticCurveTo(cp1x, cp1y, x, y)
+                // 绘制二次贝塞尔曲线，cp1x,cp1y 为一个控制点，x,y 为结束点。
+                // ctx.beginPath();
+                // ctx.moveTo(75, 25);
+                // ctx.quadraticCurveTo(25, 25, 25, 62.5);
+                // ctx.quadraticCurveTo(25, 100, 50, 100);
+                // ctx.quadraticCurveTo(50, 120, 30, 125);
+                // ctx.quadraticCurveTo(60, 120, 65, 100);
+                // ctx.quadraticCurveTo(125, 100, 125, 62.5);
+                // ctx.quadraticCurveTo(125, 25, 75, 25);
+                // ctx.stroke();
+                // 仿写:
+                ctx.beginPath();
+                ctx.quadraticCurveTo(20, 30, 100, 100)
+                ctx.stroke()
+
+
+                // bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+                // 绘制三次贝塞尔曲线，cp1x,cp1y为控制点一，cp2x,cp2y为控制点二，x,y为结束点。
+                //三次贝塞尔曲线
+                // ctx.beginPath();
+                // ctx.moveTo(75, 40);
+                // ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
+                // ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
+                // ctx.bezierCurveTo(20, 80, 40, 102, 75, 120);
+                // ctx.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
+                // ctx.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
+                // ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
+                // ctx.fill();
+                // ctx.stroke()
+
+                // roundedRect(ctx, 12, 12, 150, 150, 15);
+                // roundedRect(ctx, 19, 19, 150, 150, 9);
+                // roundedRect(ctx, 53, 53, 49, 33, 10);
+                // roundedRect(ctx, 53, 119, 49, 16, 6);
+                // roundedRect(ctx, 135, 53, 49, 33, 10);
+                // roundedRect(ctx, 135, 119, 25, 49, 10);
+
+                // ctx.beginPath();
+                // ctx.arc(37, 37, 13, Math.PI / 7, -Math.PI / 7, false);
+                // ctx.lineTo(31, 37);
+                // // ctx.fill(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+                // ctx.closePath()
+                // ctx.stroke()
+
+                // 120度1===================
+                // ctx.beginPath();
+                // ctx.arc(37, 37, 13, 0, Math.PI/(3/2), false);
+                // ctx.lineTo(37, 37);
+                // // ctx.fill(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+                // ctx.closePath()
+                // ctx.stroke()
+                // 120度2===================
+                // ctx.translate(100,100);
+                // ctx.rotate(Math.PI*2/3)
+
+                // 扇形
+                ctx.beginPath();
+                ctx.arc(37, 37, 13, -Math.PI / (6 / 5), -Math.PI / 6, false);
+                ctx.lineTo(37, 37);
+                ctx.fillStyle = 'red'
+                ctx.fill(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+                ctx.closePath()
+                ctx.beginPath();
+                ctx.arc(37, 37, 13, -Math.PI / 6, Math.PI / 2, false);
+                ctx.lineTo(37, 37);
+                ctx.fillStyle = 'blue'
+                ctx.fill(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+                ctx.closePath()
+                ctx.beginPath();
+                ctx.arc(37, 37, 13, Math.PI / 2, -Math.PI / (6 / 5), false);
+                ctx.lineTo(37, 37);
+                ctx.fillStyle = 'green'
+                ctx.fill(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+                ctx.closePath()
+
+
+
+                // 60度
+                // ctx.beginPath();
+                // ctx.arc(37, 37, 13, -Math.PI/(3/2), -Math.PI/3, true);
+                // ctx.lineTo(37, 37);
+                // // ctx.fill(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+                // ctx.closePath()
+                // ctx.stroke()
+
+                for (var i = 0; i < 8; i++) {
+                    ctx.fillRect(51 + i * 16, 35, 4, 4);
+                }
+                for (i = 0; i < 6; i++) {
+                    ctx.fillRect(115, 51 + i * 16, 4, 4);
+                }
+
+                for (i = 0; i < 8; i++) {
+                    ctx.fillRect(51 + i * 16, 99, 4, 4);
+                }
+                ctx.beginPath();
+                ctx.moveTo(83, 116);
+                ctx.lineTo(83, 102);
+                ctx.bezierCurveTo(83, 94, 89, 88, 97, 88);
+                ctx.bezierCurveTo(105, 88, 111, 94, 111, 102);
+                ctx.lineTo(111, 116);
+                ctx.lineTo(106.333, 111.333);
+                ctx.lineTo(101.666, 116);
+                ctx.lineTo(97, 111.333);
+                ctx.lineTo(92.333, 116);
+                ctx.lineTo(87.666, 111.333);
+                ctx.lineTo(83, 116);
+                ctx.fill();
+                // 白色
+                ctx.fillStyle = "white";
+                ctx.beginPath();
+                ctx.moveTo(91, 96);
+                ctx.bezierCurveTo(88, 96, 87, 99, 87, 101);
+                ctx.bezierCurveTo(87, 103, 88, 106, 91, 106);
+                ctx.bezierCurveTo(94, 106, 95, 103, 95, 101);
+                ctx.bezierCurveTo(95, 99, 94, 96, 91, 96);
+                ctx.moveTo(103, 96);
+                ctx.bezierCurveTo(100, 96, 99, 99, 99, 101);
+                ctx.bezierCurveTo(99, 103, 100, 106, 103, 106);
+                ctx.bezierCurveTo(106, 106, 107, 103, 107, 101);
+                ctx.bezierCurveTo(107, 99, 106, 96, 103, 96);
+                ctx.fill();
+                // 黑色
+                ctx.fillStyle = "black";
+                ctx.beginPath();
+                ctx.arc(101, 102, 2, 0, Math.PI * 2, true);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(89, 102, 2, 0, Math.PI * 2, true);
+                ctx.fill();
+
+                ctx.scale(10,10)
+            }
+        }
+
+        function roundedRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x, y + radius);
+            ctx.lineTo(x, y + height - radius);
+            ctx.quadraticCurveTo(x, y + height, x + radius, y + height);
+            ctx.lineTo(x + width - radius, y + height);
+            ctx.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
+            ctx.lineTo(x + width, y + radius);
+            ctx.quadraticCurveTo(x + width, y, x + width - radius, y);
+            ctx.lineTo(x + radius, y);
+            ctx.quadraticCurveTo(x, y, x, y + radius);
+            ctx.stroke();
+        }
+    </script>
+    <style>
+        .active {
+            transform-origin: center;
+            transform: rotate(360deg);
+            transition: all 2s linear;
+        }
+    </style>
+</head>
+
+<body onload="draw();">
+    <canvas id="canvas" width="74" height="74"></canvas>
+    <button onclick="zhuan(this)">转起来</button>
+    
+    <script>
+        function zhuan(e) {
+            document.getElementById('canvas').classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

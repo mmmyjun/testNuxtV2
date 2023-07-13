@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // p352
+        // async function foo() {
+        //     console.log(0)
+        //     // await Promise.reject(-1) // 0 3 -1
+        //     // await Promise.resolve(-1) // 0 3 2
+
+        //     console.log(await Promise.resolve(7)) // 0 3 7 2
+
+        //     console.log(await 'bar')
+
+        //     console.log(2)
+        // }
+        // foo()
+        // console.log(3)
+
+
+        // p353
+        // async function foo() {
+        //     console.log(await Promise.resolve('foo'))
+        // }
+        // async function bar() {
+        //     console.log(await 'bar')
+        // }
+        // async function baz() {
+        //     console.log('baz')
+        // }
+        // foo()
+        // bar()
+        // baz()
+
+
+        // p354
+        // async function foo() {
+        //     console.log(2)
+        //     await null
+        //     console.log(4)
+        // }
+        // console.log(1)
+        // foo()
+        // console.log(3)
+
+
+        // p359
+        async function add2(x) {
+            return x + 2
+        }
+        async function add3(x) {
+            return x + 3
+        }
+        async function add5(x) {
+            return x + 5
+        }
+        async function addTen(x) {
+            for (const fn of [add2, add3, add5]) {
+                x = await fn(x)
+            }
+            return x
+        }
+        addTen(9).then(console.log)
+    </script>
+</body>
+
+</html>

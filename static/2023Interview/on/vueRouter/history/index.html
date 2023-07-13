@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .current {
+            color: red;
+        }
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.js"></script>
+</head>
+
+<body>
+    <button id="btn1">压栈pushState</button>
+    <button id="btn3">栈长度</button>
+    <button id="btn4">路由前进</button>
+    <button id="btn5">路由回退</button>
+    <span></span>
+    <div id="content"></div>
+    <script>
+        $(document).ready(function () {
+            let i = 1;
+            $('span').html('当前历史记录栈中的总条数:' + history.length);
+            $('#btn1').on('click', () => {
+                let page = 'test' + i + '.html'
+                history.pushState({page: page}, "", 'test'+ i + '.html');
+                i++
+            })
+
+            $('#btn3').on('click', function(){
+                $('span').html('')
+            })
+            $('#btn4').on('click', function(){
+               history.forward()
+            })
+            $('#btn5').on('click', function(){
+               history.back()
+            })
+            window.addEventListener('popstate', function(e) {
+                $('#content').load(e.state.page);
+            })
+            
+        })
+    </script>
+</body>
+
+</html>

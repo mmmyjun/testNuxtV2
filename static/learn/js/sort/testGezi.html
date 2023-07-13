@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/css">
+    #root {
+      position: relative;
+    }
+
+    .child {
+      position: absolute;
+      background: aliceblue;
+      border: 1px solid red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 2s;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="randomIt()">乱序</button>
+  <script>
+    var rowColumn = 8;
+    var allRecords = [];
+    var arr = Array.from({ length: rowColumn * rowColumn }, (arr, index) => index + 1);
+    var newDiv = document.createElement('div')
+    newDiv.id = 'root'
+    var cArr = []
+
+    function test(initNumber, childWidth = 40) {
+      let num = initNumber * initNumber;
+
+      cArr = [];
+
+      if (!document.getElementById('root') || !document.getElementById('root').children.length) {
+        Array.from({ length: num }, (newArr, index) => {
+          let child = document.createElement('div');
+
+          let content = index + 1;
+          child.className = `child child${arr[index]}`;
+
+          let row = Math.floor(content / initNumber);
+          let column = content % initNumber;
+          let x = column === 0 ? (initNumber - 1) * childWidth : (column - 1) * childWidth;
+          let y = column === 0 ? (row - 1) * childWidth : row * childWidth;
+          child.style.width = `${childWidth}px`;
+          child.style.height = `${childWidth}px`;
+          child.style.left = x + 'px';
+          child.style.top = y + 'px';
+          child.innerHTML = content;
+          allRecords.push({
+            name: index + 1,
+            top: y + 'px',
+            left: x + 'px'
+
+          })
+          cArr.push(child);
+        })
+        if (document.getElementById('root')) {
+          document.getElementById('root').innerHTML = ''
+        } else {
+          document.body.appendChild(newDiv);
+        }
+        cArr.map(e => newDiv.appendChild(e))
+      } else {
+        for (let i = 0; i < newDiv.childNodes.length; i++) {
+          newDiv.childNodes[arr[i] - 1].style.top = allRecords[i].top;
+          newDiv.childNodes[arr[i] - 1].style.left = allRecords[i].left;
+        }
+      }
+    }
+    test(rowColumn)
+
+    function randomIt() {
+      arr.sort(() => 0.5 - Math.random())
+      test(rowColumn)
+    }
+  </script>
+</body>
+
+</html>
+
+<!-- (method) ArrayConstructor.from<any, number>(iterable: Iterable<any> | ArrayLike<any>, mapfn: (v: any, k: number) => number, thisArg?: any): number[] (+3 overloads) -->

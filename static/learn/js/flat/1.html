@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [0,[1,2,3, [4,5], [6,7, [8,9]]], 10, [11,[12,[13,[14,[15]]]]]]
+
+        let d = [];
+        let fn = arr => {
+            for (let i = 0; i < arr.length; i++) {
+                if (Array.isArray(arr[i])) {
+                        fn(arr[i]);
+                } else {
+                    d.push(arr[i]);
+                }
+            }
+        }
+        fn(arr)
+        console.log(d) // [4, 1, 2, 3, 6, 7, 8, 3, 9, 10, 4, 6, 11]
+
+
+        const flatByReduce = (ary) => {
+            return ary.reduce((prev, cur) => {
+                return prev.concat(Array.isArray(cur) ? flatByReduce(cur) : cur)
+            }, [])
+        }
+        const result = flatByReduce(arr)
+        console.log('reduce递归方式====reduce', result);
+
+
+        const recurFunc = (mulArs) => {
+            let crr = [];
+            let recAr = (ay) => {
+                return Array.isArray(ay) ? ay.map(recAr): crr.push(ay)
+            }
+            recAr(mulArs)
+            return crr
+        } 
+        console.log('recurFunc',recurFunc(arr))
+
+        
+
+        let copyAry = JSON.parse(JSON.stringify(arr))
+        copyAry += ''; 
+        copyAry = copyAry.split(','); 
+        console.log('啊啊',copyAry); // ["222", "333", "444", "55", "66", "77"]
+    
+
+    </script>
+</body>
+</html>

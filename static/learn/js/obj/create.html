@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Object.create(proto, propertiesObject)
+        // propertiesObject:可选  如果该参数被指定且不为 undefined，则该传入对象的自有可枚举属性（即其自身定义的属性，而不是其原型链上的枚举属性）将为新创建的对象添加指定的属性值和对应的属性描述符。
+        // 这些属性对应于 【Object.defineProperties()】 的第二个参数。
+
+        // getFoo is property which isn't enumerable
+        const myObj = Object.create({}, { getFoo: { value() { return this.foo; } } });
+        myObj.foo = 'bar';
+        console.log('entries',Object.entries(myObj)); // [ ['foo', 'bar'] ]
+        
+        let strObj = Object.create(
+            null,
+            {
+                x: { value: 'x', enumerable: false },
+                y: { value: 'y', enumerable: true }
+            }
+        )
+        // 不可枚举的属性默认会被忽略：
+        JSON.stringify(
+            Object.create(
+                null,
+                {
+                    x: { value: 'x', enumerable: false },
+                    y: { value: 'y', enumerable: true }
+                }
+            )
+        );
+        console.log('strObj', strObj)
+
+        const person = {
+            isHuman: false,
+            printIntroduction: function () {
+                console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+            }
+        };
+        const me = Object.create(person);
+        me.name = 'Matthew'; // "name" is a property set on "me", but not on "person"
+        me.isHuman = true; // Inherited properties can be overwritten
+        me.printIntroduction();
+        // Expected output: "My name is Matthew. Am I human? true"
+
+        const nullProtoObj = Object.create(null); // create an object with "null" prototype
+        console.log('nullProtoObj', nullProtoObj)
+        console.dir(nullProtoObj)
+
+        const perObj = {
+            age: 1,
+            sex: false,
+            bb: {
+                cc: 6
+            }
+        }
+        const perB = Object.create(perObj, {
+            age: { value: 33 },
+            // bb: { value: { cc: 7 }}
+        })
+        perB.sex = true
+        perB.bb.cc = 8
+        console.log('perB', perObj, perB, perB.bb.cc, perB.__proto__)
+        console.log(perB.__proto__.constructor, perB.constructor, perB.__proto__.constructor === perB.constructor)
+
+
+
+        
+    </script>
+</body>
+</html>

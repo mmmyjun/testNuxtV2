@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var name = 'ww';
+        // (function () {
+        //     var name;
+        //     if (typeof name == 'undefined') {
+        //         name = 'jack'
+        //         console.log(1)
+        //     } else {
+        //         console.log(2)
+        //     }
+        // })()
+
+
+
+        function test(a, b) {
+            console.log(b)
+            return {
+                test: function(c) {
+                    return test(c,a)
+                }
+            }
+        }
+        var retA = test(0) // undefined
+        retA.test(2)
+        retA.test(4)
+        retA.test(8)
+        var retB = test(0).test(2).test(4).test(8)
+        var retC = test('good').test('bad')
+        retC.test('good')
+        retC.test('bad')
+        // undefined
+        // 0
+        // 0
+        // 0
+
+        // undefined
+        // 0
+        // 2
+        // 4
+
+        // undefined
+        // good 
+        // bad
+        // bad
+
+        // a.三角形个数，输入一个非负整数的数组，如果将数组元素选作三角形的边长，编写一个函数，输入这个数组可构成的三角形数量 ????
+
+        
+
+        // b.一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个n级台阶总共有多少跳法
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+重排(回流)
+当dom得变化影响了元素的几何(DOM对象的位置和尺寸大小)，浏览器需要重新计算元素的几何属性，将其安放在界面中的正确位置，
+这个过程叫重排
+***影响因素:
+任何会改变元素几何信息的操作，都会触发重排。例如
+*添加或者删除可见的DOM元素
+*元素尺寸改变--边距、填充、边框、宽度高度
+*内容变化,比如用户在input框中输入文字
+*浏览器窗口尺寸改变--resize事件发生时
+*计算offsetWidth和offsetHeight属性
+*设置style属性的值
+
+
+
+
+重绘
+当一个元素的外观发生改变但没有改变布局，需要把元素外观绘制出来的过程
+影响因素:
+color border-style visiblility background
+text-decoration background-image background-position background-repeat
+outline-color outline  outline-style border-radius
+outline-width box-shadow background-size

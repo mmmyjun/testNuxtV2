@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        let arr = [3, 6, 10, 2, 15, 8, 4]
+        arr.sort((a, b) => a - b)
+        console.log(arr)
+
+        let numberObjAry = [{ name: 'qq', age: 23 }, { name: 'ww', age: 11 }, { name: 'ee', age: 44 }]
+        numberObjAry.sort((a, b) => a.age - b.age) // 这种适用于属性值Number后是number类型的数据
+        console.log('numberObjAry', numberObjAry)
+
+        let strObjAry = [{ name: 'qq', age: 'aa' }, { name: 'ww', age: 'cc' }, { name: 'ee', age: 'bb' }]
+        strObjAry.sort((a, b) => a.age.localeCompare(b.age))
+        console.log('localeCompare', strObjAry)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form" onsubmit="toSub">
+        <input type="text" placeholder name="setInput">
+        <button type="submit">登录</button>
+        
+        <button type="text" onclick="munualSubmit">主动调用</button>
+
+        <input type="image" src="../../../img/1.png">
+
+    </form>
+    <script>
+        let form = document.addEventListener("DOMContentLoad", (e) => {
+            e.preventDefault()
+            console.log('监听')
+        })
+        console.log(form.elements[0])
+        function toSub(e) {
+            
+            console.log('toSub')
+        }
+        // toSub()
+
+        function munualSubmit(params) {
+            console.log('munualSubmit')
+        }
+    </script>
+</body>
+</html>

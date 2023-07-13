@@ -1,0 +1,16 @@
+git pull ==> git fetch + git merge
+
+
+git把当前分支改名========
+1.先重命名本地分支
+git branch -m tag权限 tagPermission
+2.删除远程分支
+git push --delete origin tag权限 
+3.上传新修改名称的本地分支
+git push origin tagPermission
+4.修改后的本地分支关联远程分支
+git branch --set-upstream-to origin/tagPermission
+
+
+配置ssh
+https://blog.csdn.net/cainiao00078/article/details/126803863

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let symK = Symbol(4)
+        let obj = {
+            sex: 'male',
+            [symK]: 'ddddd',
+            func: () => {}
+        }
+        console.dir(obj)
+        console.log(obj.constructor === obj.__proto__.constructor)
+        console.log(obj.constructor === Object)
+        console.log(obj.__proto__.constructor === Object)
+        console.log(obj.__proto__ === Object.prototype)
+        // obj.__proto__.friends = ['qq']
+        console.log('object.keys', Object.keys(obj))
+        for(let i in obj) {
+            console.log('遍历key', i)
+        }
+        console.log('getOwnPropertySymbols',Object.getOwnPropertySymbols(obj))
+
+        let obje = {
+            hh: 44444
+        }
+        console.dir(obje)
+
+        console.log(Object.entries('foo')); // [ ['0', 'f'], ['1', 'o'], ['2', 'o'] ]
+        // iterate through key-value gracefully
+        const obt = { a: 5, b: 7, c: 9 };
+        for (const [key, value] of Object.entries(obt)) {
+            console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
+        }
+        // Or, using array extras
+        Object.entries(obt).forEach(([key, value]) => {
+            console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
+        });
+        Object.entries(obt).map(([key,value]) => {
+            console.log('map key', key, value);
+        })
+
+
+        
+
+    </script>
+</body>
+</html>

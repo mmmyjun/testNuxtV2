@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Object.create(proto, propertiesObject)
+        // propertiesObject:可选  如果该参数被指定且不为 undefined，则该传入对象的自有可枚举属性（即其自身定义的属性，而不是其原型链上的枚举属性）将为新创建的对象添加指定的属性值和对应的属性描述符。
+        // 这些属性对应于 【Object.defineProperties()】 的第二个参数。
+
+        var arr = [{n:1}]
+        var proxyArray = new Proxy(arr, {
+            get(target, property, receiver) {
+                console.log('proxyArray获取', property)
+                return Reflect.get(...arguments)
+            },
+            set(target, property, value, receiver) {
+                console.log('proxyArray设置', property)
+                return Reflect.set(...arguments)
+            }
+        })
+        // proxyArray.push({ n: 2 })
+        // proxyArray = [] =>不行
+        // console.log(proxyArray, 'proxyArray')
+
+        var obj = { m: 1, mry: [{m:22}] }
+        var proxyObject = new Proxy(obj, {
+            get(target, property, receiver) {
+                console.log('proxyObject获取', property)
+                return Reflect.get(...arguments)
+            },
+            set(target, property, value, receiver) {
+                console.log('proxyObject设置', property)
+                return Reflect.set(...arguments)
+            },
+            deleteProperty(target, property) {
+                console.log('proxyObject删除属性', property)
+                return Reflect.deleteProperty(...arguments)
+            }
+        })
+        proxyObject.mry = []
+        // proxyObject.qq = 4
+        // proxyObject = {} =>不行
+        // proxyObject = null =>不行
+        // obj = {}
+        // delete proxyObject.m
+        // console.log(proxyObject, 'proxyObject')
+
+        let books = {}
+        Object.defineProperties(books, {
+            year_: {
+                configurable: true,
+                value: 2000
+            },
+            num: {
+                writable: true,
+                value: 100
+            },
+            year: {
+                configurable: true,
+                get() {
+                    console.log('get year')
+                    return this.year_;
+                },
+                set(newV) {
+                    console.log('set year', newV)
+                    if (newV > 2023) {
+                        this.num = 200
+                        // this.year_ = 2023
+                        // return;
+                    }
+                    this.year_ = newV
+                }
+            }
+        })
+        
+        // console.log('books', books.year)
+        // console.log('books', books.year = 2028)
+        // console.log('books delete',delete books.year)
+        // books.mm = 1111
+        // console.log('books', books)
+        // console.log('books', Object.getOwnPropertyDescriptors(books))
+        let plant = {
+            color: 'green',
+            leafNum: 3,
+            newColorOfLeaf: {
+                get() {
+                    debugger
+                    return this.leafNum
+                },
+                set(newV) {
+                    debugger
+                    if (newV == 'yellow') {
+                        this.leafNum = 0
+                    }
+                     this.color = newV;
+                }
+            }
+        }
+        // console.log('plant', plant.newColorOfLeaf)
+        // console.log('plant', plant.newColorOfLeaf = 'yellow')
+        // console.log('plant', plant)
+        // console.log('plant', Object.getOwnPropertyDescriptors(plant))
+
+        function test() {
+            console.log(arguments)
+        }
+        // test(2,5,6)
+
+        
+        var o = {
+            a: 7,
+            get b() {
+                return this.a + 1;
+            },
+            set b(newV) {
+                this.a = this.a + '啊啊'
+            },
+            set c(x) {
+                this.a = x / 2
+            }
+        };
+        // console.log(o.a); // 7
+        // console.log(o.b); // 8
+        // o.c = 50;
+        // console.log(o.a); // 25
+        // console.log('ooo', Object.getOwnPropertyDescriptors(o))
+
+
+        // https://zhuanlan.zhihu.com/p/549905143 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!**************************************
+        // https://juejin.cn/post/6907028003469918222
+        // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+        // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties
+        // https://blog.csdn.net/weixin_44875937/article/details/127531348
+        // https://blog.51cto.com/u_14693205/5487633?articleABtest=1
+        var ary = [{n:1}]
+        Object.defineProperties(ary, {
+            get() {
+                console.log('ary get');
+                
+                return this.ary
+            },
+            set(newV) {
+                console.log('ary变了', newV);
+                
+            }
+        })
+        // ary[0].n=2
+        // ary.push({n:3})
+        // ary = []
+        // ary.splice(0,1)
+        // ary.pop()
+        
+    </script>
+</body>
+</html>

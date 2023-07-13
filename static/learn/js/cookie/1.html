@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    cookie localStorage sessionStorage
+    cookie:会在同源请求中默认携带，即在浏览器和服务器之间回传。所以存得数据大小最小，一般为4k；
+    过期expires/max-age过期后自动失效.
+    不同源的请求中不会默认携带，但是可以通过设置withCredentials处理找个问题
+    
+    cookie的内容主要包括：名字、值、过期时间、路径和域。路径与域一起构成cookie的作用范围。若不设置时间，则表示这个cookie的生命期为浏览器会话期间，关闭浏览器窗口，cookie就会消失。这种生命期为浏览器会话期的cookie被称为会话cookie。
+    会话cookie一般不存储在硬盘而是保存在内存里，当然这个行为并不是规范规定的。若设置了过期时间，浏览器就会把cookie保存到硬盘上，关闭后再打开浏览器这些cookie仍然有效直到超过设定的过期时间。对于保存在内存里的cookie，不同的浏览器有不同的处理方式session机制。
+    localStorage:数据存在本地浏览器中，关闭网页后再次打开仍然在。通过localstorage.removeItem清除某个选项，localstorage.clear()；所以一般5M或者更大。
+    sessionStorage: 数据存在本地浏览器中，关闭网页后再次打开不在了.sessionStorage.removeItem清除某个选项,sessionStorage.clear()；所以一般5M或者更大。
+    
+    https://www.cnblogs.com/jing-tian/p/10991431.html
+    共同点：都是保存在浏览器端、且同源的
+    区别：
+    1、cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递，而sessionStorage和localStorage不会自动把数据发送给服务器，仅在本地保存。cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下
+    2、存储大小限制也不同，cookie数据不能超过4K，同时因为每次http请求都会携带cookie、所以cookie只适合保存很小的数据，如会话标识。sessionStorage和localStorage虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大
+    3、数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭之前有效；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie：只在设置的cookie过期时间之前有效，即使窗口关闭或浏览器关闭
+    4、作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localstorage在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的
+    5、web Storage支持事件通知机制，可以将数据更新的通知发送给监听者
+    6、web Storage的api接口使用更方便
+    <script>
+        
+
+
+            // Number(123456789.23).toLocaleString()
+
+            // js性能优化
+            // 性能优化之闭包https://www.w3cschool.cn/javascript/javascript-optimization.html
+
+
+            // 如何优化页面渲染
+            // 关于页面渲染的一些优化方案分享（懒加载、虚拟列表）https://blog.csdn.net/LizequaNNN/article/details/127420654
+            
+
+            // 三种减少页面加载时间的方法
+            // 减少http请求(合并文件、图片)
+            // 压缩js css代码：去除空格 换行 注释等
+            // cdn
+            // 服务器启用gzip压缩功能
+            // 标明高度和宽度（如果浏览器没有找到这两个参数，它需要一边下载图片一边计算大小，如果图片很多，浏览器需要不断地调整页面。这不但影响速度，也影响浏览体验。 当浏览器知道了高度和宽度参数后，即使图片暂时无法显示，页面上也会腾出图片的空位，然后继续加载后面的内容。从而加载时间快了，浏览体验也更好了。）
+
+
+
+            var arr1 = new Array();
+            var arr2 = new Array(3);
+            // var arr3 = new Array(3)(4);
+            var arr4 = new Array('3', '4');
+            console.log(arr1, arr2, arr4);
+
+            function test(a,b) {
+                console.log(b);
+                return {
+                    test: function(c) {
+                        return test(c, a)
+                    }
+                }
+            }
+            var retA = test(0)
+            retA.test(2)
+            retA.test(4)
+            retA.test(8)
+            var retB = test(0).test(2).test(4).test(8)
+            var retC = test('good').test('bad')
+            retC.test('good')
+            retC.test('bad')
+            // 0 
+            // 
+
+
+            
+    </script>
+</body>
+</html>

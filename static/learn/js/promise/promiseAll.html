@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = Promise.resolve(true)
+        let b = Promise.resolve(true)
+        let c = Promise.reject(-1)
+        let d = new Promise((resolve, reject) => {
+            throw new Error('错了哼') 
+            // const f = 1;f=2
+        })
+        Promise.all([a, b, c, d]).then(e => {
+            console.log('t==', e)
+        }).catch(e => {
+            console.log('catch1==', e)
+        })
+        console.log('威威')
+
+        // const p1 = new Promise((resolve, reject) => {
+        //     resolve('hello');
+        // })
+        //     .then(result => result)
+        //     .catch(e => e);
+        // const p2 = new Promise((resolve, reject) => {
+        //     reject('报错了22');
+        // })
+        //     .then(result => result)
+        //     .catch(e => {
+        //          console.log('p2呀', e);
+        //          return e
+        //     });
+        // const p3 = new Promise((resolve, reject) => {
+        //     throw new Error('报错了33');
+        // })
+        //     .then(result => result)
+        //     .catch(e => {
+        //         console.log('p3呀', e);
+        //         return e.message
+        //     });
+        // Promise.all([p1, p2, p3])
+        //     .then(result => {
+        //         console.log('result', result)
+        //     })
+        //     .catch(e => console.log('错了欸', e));
+
+
+        // let gg = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         console.log('gg了')
+        //         resolve(66666)
+        //     }, 3000)
+        // });
+        let gg = 
+                setTimeout(() => {
+                    console.log('gg了')
+                }, 3000)
+        let hh = Promise.resolve(true)
+        let jj = Promise.resolve(-1)
+        let kk = new Promise((resolve, reject) => {
+            // throw new Error('错了哼')
+            // const f = 1;f=2
+            resolve(7777)
+        })
+        Promise.all([gg, hh, jj, kk]).then(e => {
+            console.log('gg then==', e)
+        }).catch(e => {
+            console.log('gg catch1==', e)
+        })
+        console.log('喜喜')
+    </script>
+</body>
+
+</html>

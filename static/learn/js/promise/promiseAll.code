@@ -1,0 +1,12 @@
+let a = Promise.resolve(true)
+let b = Promise.resolve(true)
+let c = Promise.reject(-1)
+let d = new Promise((resolve, reject) => {
+    throw new Error('错了哼')
+    // const f = 1;f=2
+})
+Promise.all([a, b, c, d]).then(e => {
+    console.log('then==', e)
+}).catch(e => {
+    console.log('catch1==', e)
+})

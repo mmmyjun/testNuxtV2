@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .b {
+            width: 400px;
+            height: 400px;
+            border: 1px solid green;
+        }
+        .a {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            overflow: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div class="a">
+       <!-- <div class="b"> -->
+        反对冯绍峰冯绍峰发范德萨范德萨发士大夫士大夫大师傅TV我TV TV二TVvTV TV
+        反对冯绍峰冯绍峰发范德萨范德萨发士大夫士大夫大师傅TV我TV TV二TVvTV TV
+        反对冯绍峰冯绍峰发范德萨范德萨发士大夫士大夫大师傅TV我TV TV二TVvTV TV
+        反对冯绍峰冯绍峰发范德萨范德萨发士大夫士大夫大师傅TV我TV TV二TVvTV TV
+       <!-- </div> -->
+
+    </div>
+    <script type="text/javascript">
+        // scrollTop + clientHeight = scrollHeight
+        document.getElementsByClassName('a')[0].addEventListener('scroll', (e) => {
+           
+            let cur = e.target
+             console.log('scroll', cur.scrollHeight, cur.scrollTop, cur.clientHeight, cur.scrollTop + cur.clientHeight)
+        })
+    </script>
+</body>
+</html>

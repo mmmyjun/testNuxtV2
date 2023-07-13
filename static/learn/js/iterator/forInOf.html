@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = 'abcd'
+        for (let i = 0; i < str.length; i++) {
+            console.log('for i==', i, str[i])
+        }
+        for (let i in str) {
+            console.log('for in==', i, str[i])
+        }
+        for (let i of str) {
+            console.log('for of==',i, str[i])
+        }
+        console.log(Object.entries(str))
+        console.log(Object.values(str))
+        
+    </script>
+</body>
+
+</html>

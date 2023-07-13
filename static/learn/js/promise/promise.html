@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function MyPromise(func) {
+            function resolve(e) {
+                console.log('res==', e)
+            }
+            function reject(e) {
+                console.log('rej==', e)
+            }
+            func(resolve, reject);
+        }
+
+        async function getError() {
+            try {
+                const result = await new Promise((res, rej) => {
+                    // setTimeout(() => {
+                    x = 6;
+                    x.push(9)
+                    res(x)
+                    // }, 3000)
+                    // setTimeout(function () { throw new Error('test') }, 0)
+                }).then(e => {
+                    return e;
+                }).catch(e => {
+                    console.log('获取错误promise catch', e)
+                    // return -1
+                    // throw new Error(e.message)
+                    return -100
+                })
+                // result = 11;
+                console.log('结果呢', result)
+                return result
+
+            } catch (e) {
+                console.log('try后得catch', e)
+
+            }
+        }
+        const getTest = async () => {
+            let bb = await getError();
+            console.log('bb', bb)
+        }
+        // getTest()
+
+        // try {
+        //     Promise.reject(-1111)
+        // } catch (error) {
+        //     console.log(error, '错误~')
+        // }
+        // try {
+        //     Promise.reject(new Error(-2222))
+        // } catch (error) {
+        //     console.log(error, '错误22~')
+        // }
+
+        // try {
+        //     throw new Error('foo')
+        // } catch (error) {
+        //     console.log(error, '错误了')
+        // }
+
+        
+    </script>
+</body>
+
+</html>

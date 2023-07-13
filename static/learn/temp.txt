@@ -1,0 +1,657 @@
+draggable true
+
+nginx
+
+
+
+JSON.stringify([{name: 1, m:2}], (k, v) => k == 'm')
+
+Symbol定义的对象属性不能使用for...in 循环遍历，但是可以使用Reflect.ownkeys来获取对象的键名
+
+一:
+for in:适用于【可枚举数据】: 对象 数组 字符串。也就是enumerable:true,可用Object.getOwnPropertyDescriptors()查看。Object.keys()可以检测是否可枚举 
+for of:适用于【可迭代数据】: 原生具备 Iterator 接口的数据结构：Array、string、map、 set、nodelist、arguments等。
+                          特征是具有Symbol.iterator属性，他对应的值是一个函数，调用该函数后是一个对应的迭代器对象。每次调用对象的next方法能得到目标的每一项，只要符合这个特点就是可迭代的
+二:
+for in:不仅限于遍历自身的原型上的也能遍历
+for of:一般只能遍历自身的（具体和迭代器的内部实现有关）
+Array.prototype.foo = 4;
+const arr = 7;
+for (let attr in arr) {
+  console.log(arr)
+}
+// 7 4
+for (let value of arr) {
+  console.log(arr)
+}
+// 7
+
+演示下目前只能遍历自身的
+Array.prototype.foo = 4;
+const arr = [7];
+arr[Symbol.iterator] = function() {
+  const _this = this;
+  return {
+    i: 0,
+    next() {
+       return this.i < _this.length ? { value: _this[this.i++], done: false } : { value: undefined, done: true }
+    }
+  }
+}
+for (let value of arr) {
+  console.log(value)
+}
+// 7
+现在改造一下可以遍历原型
+Array.prototype.foo = 4;
+const arr = [7];
+arr[Symbol.iterator] = function() {
+  const _this = this;
+  Object.keys(this.__proto__).forEach(item => this.push(this.__proto__[item]))
+  return {
+    i: 0,
+    next() {
+       return this.i < _this.length ? { value: _this[this.i++], done: false } : { value: undefined, done: true }
+    }
+  }
+}
+for (let value of arr) {
+  console.log(value)
+}
+
+
+div和span的区别
+
+samesite
+
+sort数字 => 已学习
+
+Array.apply(null, {length: 3})
+Array.from({length:3})
+Array(3).fill(null)
+
+history push => 已学习
+
+vue3 reactive和ref的区别:
+vue3响应式原理是通过proxy实现的, Proxy({}, {get set})
+reactive只能对引用类型做代理，所以出现了ref
+ref就好比class REF{ _value = null; createReactive() }内部有个私有属性value,如果是基本数据类型就直接丢给value属性，而且为了保持基本数据类型的响应式所以封装成了{value:值 }；但是如果这个值是引用类型的，ref内部就有一个createReactive的函数把数据递归处理成ref再.value获取
+
+
+
+
+vue3 vue2区别？？？？
+
+created和mounted的区别
+1.mounted里是组件挂载成功了用this.$el会得到对应的dom，created时候并没有把dom加载好所以用this.$el获取会得到null
+2.created时候还没挂载子组件，子组件发生在父的beforeMount后。mounted时候子组件已经挂载好了的
+3.created想使用this.$el可以通过this.$nextTick的方式
+
+
+$nextTick是在beforeUpdate还是updated后执行=>updated后
+
+插入排序 冒泡排序
+
+watch computed随先执行 => vue里的computed默认比watch先执行，但是watch加了immediate: true后顺序就反过来了
+activated:顺序 => ?
+
+生命周期图!!!!!!!vue2 3
+
+动态路由(components webpackchunkname) 懒加载 
+
+Symbol.iterator 只遍历一次
+
+event loop: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop
+
+amd umd: http://www.ptbird.cn/umd-module-webpack-build-vue.html   https://blog.csdn.net/weixin_39810901/article/details/112621091
+
+svg react vue传入props宽高颜色会自动改变
+
+cookie和token啥区别
+
+怎么知道webpack哪些命令，package.json里-f --watch
+
+函数式组件 高阶组件
+
+匹配<%%=data %>
+
+
+cdn
+
+canvas svg
+
+service worker: https://mp.weixin.qq.com/s/3Ep5pJULvP7WHJvVJNDV-g  https://www.lmcc.top/articles/73.html
+
+
+class super
+
+esbuild
+
+new fileReader
+
+postcss+corejs
+
+docker
+
+后端gzip
+
+运行时runtime
+
+try catch能捕获到promise的报错吗 =》 已看
+
+blob
+
+释梵：
+shadow-dom是实现 webcompoents 的一种手段
+类比于， XMLHttpRequest 是实现ajax的一种手段
+iframe也可以实现 ajax！！！！！！！！！！？？？？？？？！？？？？？？？
+
+
+
+  .then((e) => {
+        console.error('then==', e)
+        return e
+      })
+      .catch((e) => {
+        console.error('catch==', e)
+      })
+      .finally(() => {
+        loading.spinning = false
+      })
+    console.error('loading~', loading.spinning)
+
+
+svg use
+
+download
+
+我有个问题哈,index.html里单独引入的自己项目的js等资源 打包时候咋单独打个包并且压缩掉input, video属于webcomponents吗
+
+
+视频切片
+
+sdk jdk docker
+
+ejs
+
+
+node的执行环境
+
+AST
+
+pnpm
+
+
+试试单独 {table} from 'elementui'和整体引入elementui后的打包区别
+
+
+
+
+await 和eventloop
+
+node-gyp - Node.js 本地插件构建工具
+
+
+严格模式this
+
+npm脚本: https://zhuanlan.zhihu.com/p/343012362
+
+ts: window document
+
+declare interface和type得区别
+
+  server: {
+    // host: true,
+    hmr: true, // 热更新配置
+    watch: {
+      usePolling: true // WSL必须，否则热更新无效
+    }
+  },
+
+z-index:0 1
+
+try catch promise
+
+v-model有啥变化
+什么是响应式原理
+vue2+ts要用插件，vuex对ts的支持不好
+ts中window会报错怎么解决: declare global window
+http协议 https流程
+
+
+杭州-拷贝工程师-朝伟:
+强：expires、cache-control\Last-Modified
+协商：
+Last-Modified / If-Modified-Since
+Etag / if-none-Match
+
+
+https://blog.csdn.net/weixin_40466351/article/details/125816936 可选链操作符
+解构ref expose
+
+
+
+提取css成单独文件:
+mini-css-extract-plugin 安装报错就添加版本@0.9.0
+在test \.css$/的use里注释掉style-loader，替换成miniCssExtractPlugin.loader
+在plugins里写 new miniCssExtractPlugin({
+  filename: 'css/built.css'
+})
+
+
+postcss  --> postcss-loader postcss-preset-env
+
+
+
+14压缩css: 插件
+optimize-css-assets-webpack-plugin
+
+15 js语法检查
+eslint语法检查 eslint-laoder eslint
+设置检查规则:
+package.json中eslintConfig中设置~
+airbnb --》 eslint-config-airbnb-base  eslint-plugin-import eslint
+
+
+开始写====>
+{
+  test: /\.js$/,
+  loader: 'eslint-loader',
+  exclude: '/node_modules/',
+  options: {
+   // 自动修复 
+    fix: true
+  }
+}
+
+npx install-peerdeps -D eslint-config-airbnb-base
+npm i eslint-laoder eslint eslint-config-airbnb-base  eslint-plugin-import -D
+package.json里写
+"eslintConfig": {
+  "extends": "airbnb-base"
+}
+
+// eslint-disable-next-line
+
+
+
+
+17.压缩html和js
+js: mode改为production即可
+html: 在htmlwebpackplugin中加入属性
+{
+  template: './index.html',
+  minify: {
+    collapseWhitespace: true,
+    removeComments: true
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+el-form-container
+.el-form-container {
+    width: 900px;
+    margin: 0 auto;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+解构ref
+
+nextTick created mounted
+
+extends
+
+git操作
+
+Shadow DOM
+
+push和重新赋值
+
+webpack dll
+
+babel
+vue-loader
+pollyfill
+express
+
+雅楠分享的patch-package: https://juejin.cn/post/7020302035207602183
+
+ fetch(url)
+    .then((res) => res.json())
+    .then((json) => (data.value = json))
+    .catch((err) => (error.value = err))
+
+babel
+函数式组件
+
+var a = {b: {c: { d: () => console.log(0) }}}
+a?.b?.c?.d?.()
+
+arr[i]=1和arr = arr.map(e => e)
+
+rqq eventloop: 
+https://zhuanlan.zhihu.com/p/395376597
+https://zhuanlan.zhihu.com/p/33058983
+
+
+require和import
+exports.a = 22
+
+node_modules每个版本都存了吗
+
+
+
+webpack: semver https://webpack.docschina.org/plugins/module-federation-plugin/#Object-syntax
+
+
+prettier已经有nodemodules包为啥还要安装插件
+
+pnpm
+babel: api.cache
+
+表单验证: promise
+
+airbnb
+extends
+
+咋做到让下拉框宽度自适应的
+
+刘涛得正则：
+::v-deep([^{]*) :deep($1)
+
+
+flex-basis
+flex-shrink
+
+rqq:文档笔记: https://doc-space.vercel.app/vuejs/api_interceptor
+rollup 
+
+Array.from({length: 64},
+
+刘涛 https://www.jianshu.com/p/c10d0b8c5581  
+     pnpm
+
+     https://single-spa.js.org/docs/videos  system-js
+     https://www.youtube.com/playlist?list=PLLUD8RtHvsAOhtHnyGx57EYXoaNsxGrTU 最后一个视频
+
+
+ajax和xhr     https://zhuanlan.zhihu.com/p/163718536
+
+https://stackblitz.com/edit/vitejs-vite-8ic7d1?file=src%2FApp.vue&terminal=dev  ：对比学 html  svg  canvas
+
+hash页面不更新
+
+记录:
+  submit(validate) {
+      validate((valid) => {
+        console.log("valid", valid);
+      });
+      // validate().then((e) => console.log('eee', e))
+    },
+        validate(callback) {
+      this.$refs["form"].validate(callback);
+      // return new Promise((resolve, reject) => {
+      //   this.$refs['form'].validate(valid => {
+      //     if (valid) {
+      //       resolve(this.form)
+      //     }
+      //     else {
+      //       reject(-1)
+      //     }
+      //   })
+      // })
+    },
+
+
+递归菜单
+
+正则：                <router-link :to="getUrlByMenuName(item)?.url" :class="['child-menu',sidebar.subMenu == item.replace(/\s+/g,'') ? 'active':'' ]">
+
+qq:
+受控非受控： https://www.naiveui.com/zh-CN/light/docs/controlled-uncontrolled
+
+
+rqq:vue3练习地址: https://stackblitz.com/edit/vue-wbrpec?file=src%2FApp.vue&file=src%2Fcomponents%2FHelloWorld.vue,src%2FApp.vue
+
+封装label和coulumn
+
+长按小圆圈事件:https://stackblitz.com/edit/vue-5fhspn?file=src%2Fcomponents%2FTouchCircle.vue
+
+
+npx npm
+
+疑问：
+obj: {
+	a: 1,
+	age:2,
+	qq:function () {
+		console.log(this)	
+	}
+}
+
+
+[].concat
+
+
+连环三节 左边下拉框 中间><= containers 
+
+https://codepen.io/yvettelau/pen/poRgYPK?editors=1100  flex min-width
+rqq: transform test_table.vue
+递归reduce去重对象数组
+router-link和a
+雨滴，雪碧图
+
+怎么让浏览器上下滚动时下拉选项也跟着走
+
+popstate
+
+transition menu用a标签z-index方式写一遍
+
+css: email disabed
+
+g2图表点legend axis消失，是g2 3.x版本的原因，4.x已修正此问题。
+
+表格改变列宽
+
+左侧菜单不层层用subTag判断咋写
+
+export全部 。可能不存在默认
+
+passive
+
+.preventDefault: a跳转
+.stop stopPropagation
+
+height: min height
+opactity: 继承 和rgba()最后一个参数
+1.v:deep开发和生产环境表现不一致
+2.测试 浏览器response里的时间是不是server回复时间
+3.computeReact
+4.flex-grip:1 flex:1等分？ flex-shrink: 0 flex-grow: 1
+5.getComputed
+6.event 计算样式 scss
+7.tooltip没内容就不显示
+8.半小时过期机制
+9.倒计时 =》 √
+10 setTimeout interval计时
+submenu :hide-timeout="5000"
+
+arr=[{name: 1}],再次赋值[{name: 1}]后，会不会watch computed？
+
+type selection
+
+function debounce(fn,delay){}
+
+drag
+
+
+防抖和节流
+
+
+与*法，或 0+1
+迭代: 
+链式:
+可拖动表格
+
+*** htmlcollection转数组和往里面添加数据  https://www.cnblogs.com/huihuihero/p/12107040.html  
+
+
+polyfill 
+babel
+
+手动设置router meta =》 √
+
+自己弄个私有库
+
+宝写的正则
+
+
+
+caller代表调用正在执行的hs的hs arguments.callee代表正在执行的hs
+
+
+校准服务器时间
+
+防抖和节流
+
+
+实现promise all.
+
+懒加载：路由懒加载和
+
+跨域请求如何携带cookie
+
+文件上传和下载
+
+
+浏览器的回流和重绘的开销将 
+
+
+
+promise: resolve reject
+1. var qq = function test() {
+		return new Promise((resolve,reject) => {
+			console.log(7);
+			resolve(8);
+			console.log(9)
+		})
+		.then(e => {
+			console.log(e, 'e--');
+			return e;
+		})
+	}
+	var w = qq();
+	console.log('w----', w);
+	 这个w为啥输出的是个Promise对象,
+
+	 function abc() {setTimeout(() => console.log(12333333333333333333333333333),0)}
+		console.log(2222222,abc() )
+
+2. resolve前面那个console.log打印和resolve
+
+
+
+#!/bin/sh
+basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+
+case `uname` in
+    *CYGWIN*|*MINGW*|*MSYS*) basedir=`cygpath -w "$basedir"`;;
+esac
+
+if [ -x "$basedir/node" ]; then
+  exec "$basedir/node"  "$basedir/node_modules/npm/bin/npm-cli.js" "$@"
+else 
+  exec node  "$basedir/node_modules/npm/bin/npm-cli.js" "$@"
+fi
+
+
+扁平化: flat reduce concat  Array.concat.apply()  Array.apply().conca???????
+
+httpcode
+
+校准服务器时间
+
+
+
+
+
+var test = new URLSearchParams(    'ID=0&name=11&templateID=22&FilterColumn=Impression%2CCTR%2CSpend&FilterCompareOpt=GT%2CEQ%2CLT&FilterValue=111%2C222%2C333&OriginalNameString=TimeColumn%2CCampaignName%2CImpression%2CImpression+Last+Period%2CCampaignSubTag&AliasNameString=Time%2CCampaignName%2CImpression%2CImpression+Last+Period%2CCampaign+Tag+%26amp%3B+Sub+Tag&PrevRangeType=0&DataType=TimeOnTime&ReportType=CampaignReport&cyclePeriod=0&cycleMonthlyDayType=0&cycleMonthlySecondDayTypeDay=0&cycleMonthlySecondDayTypeWeekNumber=0&cycleWeeklyDay=0&dateRange=2&email=1%40qq.com%2C2%40qq.com&monthlyFirstDayTypeDay=1&scheduleType=0&timeGranularity=5&profiles=2647619868093907&NextDueTime=11%2F30%2F2022&fileFormat=csv&CustomDays=0&CustomStartDate=&CustomEndDate=&WeekStart=Monday&ftpHost=aaaa&ftpUsername=bbbb&ftpPwd=cccccccc&profileNameList=Vital+Couture&templateName=Campaign+Performance&isAllProfile=false&hasError=false&reseted=0&ReportTargetingType=0&campaignTag=96412%2C96970%2C96387&CampaignType=sponsoredProducts%2CheadlineSearch&cycleTimezone=America%2FLos_Angeles&cycleSendTime=10&CustomReportName=645647654756&asinTag=0&userBrandId=0&categoryName=0&googleCloudStorage=store&googleCloudStorageBucket=3543353&CurrencyExchange=US&CompressType=zip&AttrReportGroupBy=0&SOVMarket=0&SelectBrands=0&SovGroup=0&ReportLevel=0&IsUseS3=true&S3Accesskey=4234242&S3Secretkey=75765765&S3Bucket=43242534535354354353&S3RegionEndpoint=USEast1&FilterCampaignTagIds=96412%2C96970%2C96197%2C96198%2C96199&ftpPasswordType=password&dataLevel=0&campaignTagName=111%2C121212%2Cdfdfdf'
+)
+
+[...test.entries()].reduce((prev, [k, v]) => ({...prev, [k]:v}), {})
+
+
+const previewDialog = (e) => {
+  let param = formatFormData('isPreviewing')
+  let result = qs.stringify(param)
+  console.log('参数', result, param, decodeURIComponent(result))
+
+  sendOtherPreview(result)
+    .then((e) => {
+      console.log('预览结果', e)
+    })
+    .catch((e) => {
+      console.log('异常了', e)
+    })
+
+  sendOtherPreview(new URLSearchParams(param))
+    .then((e) => {
+      console.log('URLSearchParams35543534成功了啊', e)
+    })
+    .catch((e) => console.log('瞅瞅哪错了', e))
+}

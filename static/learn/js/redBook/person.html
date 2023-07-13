@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            border: 10px solid black;
+        }
+
+        .a {
+            background: pink;
+        }
+
+        .b {
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="a"></div>
+    <div class="b"></div>
+    <image src="http://placehold.it/">
+        <script>
+            // function Person(name, age, address) {
+            //     this.name = name;
+            //     this.age = age;
+            //     this.address = address;
+            //     this.color = "green"
+            //     this.sayAdress = function () {
+            //         console.log('地址', this.address, this.color)
+            //     }
+            // }
+            // Person.prototype.color = 'red'
+            // Person.prototype.colArr = [5]
+            // Person.prototype.setAddress = function (n) {
+            //     console.log('set address', n, this.color)
+            // }
+            // Person.ddd = () => {
+            //     console.log('直接ddd')
+            // }
+            // let person = new Person('qq', 2, 'abc');
+            // let person2 = new Person('qq', 2, 'abc');
+
+            // p254
+            // console.log('相等', person.setAddress == person2.setAddress) // 完全相等
+
+
+            // p255
+            class Person {
+                set name(newName) {
+                    this.name_ = newName;
+                }
+                get name() { 
+                    return this.name_; 
+                }
+            }
+            let p = new Person();
+            p.name = 'John';
+            p.sex = 6
+            console.dir(p);
+            console.log(p.name);
+
+
+
+
+
+
+
+            let jp = {
+                name: 'John',
+                age: 33333,
+                job: {
+                    address: '地址~~~',
+                    title: '标题'
+                }
+            }
+            // 没懂跟书上不一样p218??????????????????????????
+            // let jCopy = {}
+            // ({name: jCopy.name, job: jCopy.job} = jp)
+            // console.log(jCopy)
+
+
+            // console.log('实例001', person, person.color);
+            // console.log('实例001===', person.setAddress());
+            // console.dir(Person)
+            // person.color = 'blue'
+            // console.log('实例颜色blue', person, person.color);
+            // person.colArr.push(8)
+            // console.dir(Person)
+            // console.log(Person())
+            // let p2 = new Person('ww', 3, 'def')
+            // console.log('实例p2', person, person.color);
+
+            // 测试Object.create
+            // let origin =  {
+            //    name: '吖',
+            //    age: 7,
+            //    friends: ['天天'],
+            //    sex: 0
+            // }
+            // let nn = Object.create(origin)
+            // nn.name = '西'
+            // nn.friends.push('冬')
+            // nn.__proto__.age = 8
+            // console.log('实例nn', nn, origin );
+
+            // 测试 p241
+            // function SuperType() {
+            //     this.property = true;
+            // }
+            // SuperType.prototype.getSuperValue = function (params) {
+            //     return this.property;
+            // }
+            // console.log(new SuperType().getSuperValue())
+            // console.dir(SuperType)
+            // function SubType() {
+            //     this.subProperty = false;
+            // }
+            // SubType.prototype = new SuperType();
+            // SubType.prototype.getSubValue = function (params) {
+            //     return this.subProperty;
+            // }
+            // SubType.prototype.getSuperValue = function (params) {
+            //     return false;
+            // }
+            // console.log(new SubType().getSuperValue())
+            // console.dir(SubType)
+
+            // 测试 p251
+            //  function TestReturnValue() {
+            //     this.name = 'qq';
+            //     this.age = 3;
+            //     this.address = '啊啊'
+            //     // return {
+            //     //     name: this.name,
+            //     //     ad: this.address
+            //     // }
+            //     // return this
+            //  }
+            //  var testReturnValue = new TestReturnValue();
+            //  console.dir(testReturnValue)
+            //  console.log(testReturnValue instanceof TestReturnValue)
+
+            // var obj = {
+            //     name: 'qq',
+            //     friends: ['ee','yy']
+            // }
+            // function object(params) {
+            //     function F() {}
+            //     F.prototype = params;
+            //     return new F();
+            // }
+            // // var obt = Object.create(obj)
+            // var obt = object(obj)
+            // console.dir(obt)
+            // obt.name = 'zzzzz'
+            // obt.friends.push('cc')
+            // console.dir(obt)
+
+            class P {
+                constructor() {
+                    this.name = new String('qqq')
+                }
+
+                sayName() {
+                    console.log('读取名字')
+                }
+            }
+            // console.dir(P)
+            // var per1 = new P()
+            // var per2 = new P()
+            // console.log(per1)
+            // console.log(per2)
+            // console.log(per1.name === per2.name)
+
+            
+
+        </script>
+</body>
+
+</html>

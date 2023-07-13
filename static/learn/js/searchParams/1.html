@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" onchange="uploadFile(event)" >
+    <script>
+        // export function sendOtherPreview(data) {
+        //     return request({
+        //         url: `${OLD_URL}/v3/MyReport/PreviewCustomReport`,
+        //         method: 'POST',
+        //         data,
+        //         headers: {
+        //             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        //         }
+        //     })
+        // }
+
+        // const previewDialog = (e) => {
+        //     let param = formatFormData('isPreviewing')
+        //     let result = qs.stringify(param)
+        //     console.log('参数', result, param, decodeURIComponent(result))
+        //     sendOtherPreview(result)
+        //         .then((e) => {
+        //             console.log('预览结果', e)
+        //         })
+        //         .catch((e) => {
+        //             console.log('异常了', e)
+        //         })
+        //     sendOtherPreview(new URLSearchParams(param))
+        //         .then((e) => {
+        //             console.log('URLSearchParams35543534成功了啊', e)
+        //         })
+        //         .catch((e) => console.log('瞅瞅哪错了', e))
+        // }
+        var test = new URLSearchParams('ID=0&name=11&templateID=22&FilterColumn=Impression%2CCTR%2CSpend&FilterCompareOpt=GT%2CEQ%2CLT&FilterValue=111%2C222%2C333&OriginalNameString=TimeColumn%2CCampaignName%2CImpression%2CImpression+Last+Period%2CCampaignSubTag&AliasNameString=Time%2CCampaignName%2CImpression%2CImpression+Last+Period%2CCampaign+Tag+%26amp%3B+Sub+Tag&PrevRangeType=0&DataType=TimeOnTime&ReportType=CampaignReport&cyclePeriod=0&cycleMonthlyDayType=0&cycleMonthlySecondDayTypeDay=0&cycleMonthlySecondDayTypeWeekNumber=0&cycleWeeklyDay=0&dateRange=2&email=1%40qq.com%2C2%40qq.com&monthlyFirstDayTypeDay=1&scheduleType=0&timeGranularity=5&profiles=2647619868093907&NextDueTime=11%2F30%2F2022&fileFormat=csv&CustomDays=0&CustomStartDate=&CustomEndDate=&WeekStart=Monday&ftpHost=aaaa&ftpUsername=bbbb&ftpPwd=cccccccc&profileNameList=Vital+Couture&templateName=Campaign+Performance&isAllProfile=false&hasError=false&reseted=0&ReportTargetingType=0&campaignTag=96412%2C96970%2C96387&CampaignType=sponsoredProducts%2CheadlineSearch&cycleTimezone=America%2FLos_Angeles&cycleSendTime=10&CustomReportName=645647654756&asinTag=0&userBrandId=0&categoryName=0&googleCloudStorage=store&googleCloudStorageBucket=3543353&CurrencyExchange=US&CompressType=zip&AttrReportGroupBy=0&SOVMarket=0&SelectBrands=0&SovGroup=0&ReportLevel=0&IsUseS3=true&S3Accesskey=4234242&S3Secretkey=75765765&S3Bucket=43242534535354354353&S3RegionEndpoint=USEast1&FilterCampaignTagIds=96412%2C96970%2C96197%2C96198%2C96199&ftpPasswordType=password&dataLevel=0&campaignTagName=111%2C121212%2Cdfdfdf')
+        function postJson(url, body) {
+            return fetch(url, {
+                method: "POST",
+                body
+            })
+        }
+        (async function run() {
+            const response = await postJson('/te', test)
+        })()
+
+        // sendOtherPreview(qs.stringify(formatFormData('isPreviewing')))
+
+        // const form = new FormData(document.getElementById('login-form'));
+        //     fetch('/login', {
+        //         method: 'POST',
+        //         body: form
+        //     });
+
+        function uploadFile(e) {
+            console.log('上传结果', e)
+             const formData = new FormData();
+            const fileField = document.querySelector('input[type="file"]');
+            formData.append('username', 'abc123');
+            formData.append('avatar', fileField.files[0]);
+            formData.append('arr', [4,5]);
+            formData.append('arrObj', [{age: 3}, {age: 6}]);
+
+            fetch('https://example.com/profile/avatar', {
+                method: 'PUT',
+                body: formData,
+                contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Success:', result);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+
+        // Example POST method implementation:
+        async function postData(url = '', data = {}) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
+
+        postData('https://example.com/answer', { answer: 42 })
+            .then(data => {
+                console.log(data); // JSON data parsed by `data.json()` call
+            });
+
+       
+
+    </script>
+</body>
+</html>

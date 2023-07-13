@@ -1,0 +1,4 @@
+vue打包时得性能优化: https://blog.csdn.net/m0_51637686/article/details/117514718
+1丶路由懒加载（代码分割）
+
+

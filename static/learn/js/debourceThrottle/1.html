@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./1.js"></script>
+</head>
+
+<body>
+
+    <button onclick="getIt()">防抖</button>
+    <button onclick="jl()">节流</button>
+
+
+    <button onclick="dd()">新得防抖2</button>
+    <button onclick="tt()">新的节流2</button>
+    <script>
+
+        let arr = [
+            {
+                name: 'qq',
+                age: 4,
+            },
+            {
+                name: 'ww',
+                age: 5,
+            }
+        ]
+        let result = arr.reduce((prev, cur) => {
+            prev[cur.name] = cur.age
+            return prev
+        }, {})
+        console.log('result', result)
+
+        let aObj = {}
+        for (let i = 0; i < arr.length; i++) {
+            aObj[arr[i].name] = arr[i].age
+        }
+        console.log('aObj', aObj)
+
+
+        // 防抖
+        var arrs = [];
+        var timer = null;
+        function getIt(idx) {
+            arrs.push(1)
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                console.log('时间啊', arrs)
+                arrs.length = 0
+            }, 2000);
+        }
+        // 节流
+        var tr = null
+        function jl(params) {
+            if (tr) {
+                return
+            }
+            tr = setTimeout(() => {
+                console.log('节流')
+                tr = null
+            }, 2000);
+        }
+
+        // 防抖之闭包
+        function debounce(fn, te = 500) {
+            let timer = null;
+            return function () {
+                let context = this;
+                let args = arguments;
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(() => {
+                    fn.apply(context, args);
+                    timer = null;
+                }, te)
+            }
+        }
+        // for (let i = 0; i < 5; i++) {
+        let dd = debounce(function (a) {
+            console.log('防抖2', a, this);
+        }, 3000);
+        // }
+
+        // 节流之闭包
+        function throttle(fn, te = 500) {
+            let timer = null;
+            return function () {
+                let context = this;
+                let args = arguments;
+                if (timer) {
+                    return
+                }
+                timer = setTimeout(() => {
+                    fn.apply(context, args);
+                    timer = null;
+                }, te)
+            }
+        }
+        // for (let i = 0; i < 5; i++) {
+        let tt = throttle(function (a) {
+            console.log('is throttle2', a, this)
+        }, 3000)
+        // }
+
+
+
+
+    </script>
+</body>
+
+</html>

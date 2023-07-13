@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>margin塌陷</title>
+</head>
+<body>
+    外边距塌陷共有两种情况：
+    第一种情况：两个同级元素，垂直排列，上面的盒子给 margin-bottom 下面的盒子给margin-top，那么他们两个的间距会重叠，以大的那个计算。解决这种情况的方法为：两个外边距不同时出现
+    第二种情况：两个父子元素，内部的盒子给 margin-top，其父级也会受到影响，同时产生上边距，父子元素会进行粘连。
+    解决方案：
+    1、为父盒子设置 border，添加 border 后父子盒子就不是真正意义上的贴合（可以设置成透明：border：1px solid transparent）；
+    2、为父盒子添加 overflow：hidden；
+    3、为父盒子设定 padding 值；
+    4、为父盒子添加 position：fixed；
+    5、为父盒子添加 display：table；
+    6、利用伪元素给父元素的前面添加一个空元素
+    .father::before { content:''; display:table; }
+</body>
+</html>

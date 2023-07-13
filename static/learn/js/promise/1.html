@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+
+        async function testP(params) {
+            var promise = new Promise((res, rej) => {
+                res(111)
+            }).then(e => {
+                console.log('then', e)
+            })
+            var promise2 = await new Promise((res, rej) => {
+                res(222)
+            })
+            console.log('promise2==', promise2)
+            return promise2
+        }
+
+        const result = testP()
+        console.log(result, 'result==')
+    </script>
+</body>
+</html>

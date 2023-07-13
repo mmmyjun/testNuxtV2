@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在network文件下有newURL内容涉及到迭代器</title>
+</head>
+
+<body>
+    <script>
+        setTimeout(console.log, 0, 'rt', 'qqww');
+        // setTimeout(() => {
+        //     console.log(111)
+        // }, 3000);
+        // setTimeout(() => {
+        //     console.log(222)
+        // }, 5000);
+
+
+        for (var i = 0; i < 5; i++) {
+            setTimeout(function () {
+                console.log(i, 'i===')
+            }, 100)
+        }
+        for (var i = 0; i < 5; i++) {
+            setTimeout(function (i) {
+                console.log(i, '方法一:第三个参数i===')
+            }, 100, i)
+        }
+        for (let i = 0; i < 5; i++) {
+            setTimeout(function () {
+                console.log(i, '方法二:let i')
+            }, 100)
+        }
+        for (var i = 0; i < 5; i++) {
+            (function (j) {
+                setTimeout(function () {
+                    console.log(j, '方法三:立即执行i===')
+                }, 100)
+            })(i)
+        }
+        for (var i = 0; i < 5; i++) {
+            setTimeout((function (z) {
+                console.log(z, '方法四:内部立即执行')
+            })(i), 100)
+        }
+    </script>
+</body>
+
+</html>
