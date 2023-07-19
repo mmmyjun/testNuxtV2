@@ -17,7 +17,7 @@
     二.没有了filters,
     三、computed可以多个，
     四、根元素可以有多个. 
-    五、插槽是把vue2的$scopedSlots和this.$slots合二为一了只有$slots的形式了
+    五、插槽是把vue2的$scopedSlots和this.$slots合二为一了只有$slots的形式了;vue2里$attrs $listeners，vue3里合并成$attrs了
     六、生命周期: 
     setup等于beforeCreate和created的阶段，
     其余的生命周期:onBeforeMount onMounted onBeforeUnmount onUnmounted 
