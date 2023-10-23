@@ -69,6 +69,10 @@ export default {
                         path: '/vue',
                         children: [
                              {
+                                label: 'tableRowColSpan',
+                                path: '/tableRowColSpan',
+                            },
+                             {
                                 label: 'ref reactive',
                                 path: '/ref',
                             },
@@ -101,7 +105,6 @@ export default {
                             {
                                 label: 'listContainer',
                                 path: '/listContainer/page',
-
                             }
                             
                         ]
