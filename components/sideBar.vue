@@ -4,12 +4,11 @@
             <el-radio-button :label="false">展开</el-radio-button>
             <el-radio-button :label="true">收起</el-radio-button>
         </el-radio-group>
-        <el-menu :default-active="$route.path == '/' ? '/js/promise/promiseAll' : $route.path"
-            class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" router  @select="handleSelect">
+        <el-menu :default-active="$route.path == '/' ? '/js/promise/promiseAll' : $route.path" class="el-menu-vertical-demo"
+            @open="handleOpen" @close="handleClose" :collapse="isCollapse" router @select="handleSelect">
             <el-submenu v-for="(item, index) in menus" :index="item.path" :key="item.path">
                 <span slot="title">{{ item.label }}</span>
-                <el-submenu v-for="(secondMenu, index) in item.children" :index="secondMenu.path"
-                    :key="secondMenu.path">
+                <el-submenu v-for="(secondMenu, index) in item.children" :index="secondMenu.path" :key="secondMenu.path">
                     <span slot="title">{{ secondMenu.label }}</span>
                     <el-menu-item v-for="({ label, path }, index) in secondMenu.children"
                         :index="`${item.path}${secondMenu.path}${path}`" :key="`${item.path}${secondMenu.path}${path}`">
@@ -48,7 +47,7 @@ export default {
                         label: 'iterator',
                         path: '/iterator',
                         children: [
-                             {
+                            {
                                 label: 'for in/of',
                                 path: '/forInOf',
                             }
@@ -58,7 +57,7 @@ export default {
                         label: 'obj',
                         path: '/obj',
                         children: [
-                             {
+                            {
                                 label: 'arr fill null',
                                 path: '/fillNull',
                             }
@@ -68,11 +67,36 @@ export default {
                         label: 'vue',
                         path: '/vue',
                         children: [
-                             {
-                                label: 'tableRowColSpan',
-                                path: '/tableRowColSpan',
+                            {
+                                label: 'checkboxChecked',
+                                path: '/base/checkboxChecked',
                             },
-                             {
+                            {
+                                label: 'selectSelected',
+                                path: '/base/selectSelected',
+                            },
+
+
+                            {
+                                label: 'slotDefault',
+                                path: '/slot/slotDefault',
+                            },
+                            {
+                                label: 'getAllSlots',
+                                path: '/slot/getAllSlots',
+                            },
+                            
+
+                            {
+                                label: 'tableRowColSpan',
+                                path: '/table/tableRowColSpan',
+                            },
+                            {
+                                label: 'validateTd',
+                                path: '/table/validateTd',
+                            },
+
+                            {
                                 label: 'ref reactive',
                                 path: '/ref',
                             },
@@ -106,14 +130,14 @@ export default {
                                 label: 'listContainer',
                                 path: '/listContainer/page',
                             }
-                            
+
                         ]
                     },
                     {
                         label: 'qiankun',
                         path: '/qiankun',
                         children: [
-                             {
+                            {
                                 label: 'qiankun 01',
                                 path: '/01/report',
                             }
@@ -131,13 +155,13 @@ export default {
     },
     methods: {
         handleOpen(key, keyPath) {
-            console.log('handleOpen',key, keyPath);
+            console.log('handleOpen', key, keyPath);
         },
         handleClose(key, keyPath) {
-            console.log('handleClose',key, keyPath);
+            console.log('handleClose', key, keyPath);
         },
         handleSelect(key, keyPath) {
-            console.log('handleSelect',key, keyPath);
+            console.log('handleSelect', key, keyPath);
             this.$store.commit('changeInMol', key);
         }
     }
@@ -145,7 +169,8 @@ export default {
 </script>
     
 <style>
-.menuBar, .el-menu-vertical-demo:not(.el-menu--collapse) {
+.menuBar,
+.el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
 }
