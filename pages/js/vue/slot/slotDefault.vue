@@ -2,6 +2,7 @@
     <flex>
         <div>Hello</div>
         <div>World</div>
+        test
     </flex>
     <!-- <div class="flex">
         <div class="flex-item">

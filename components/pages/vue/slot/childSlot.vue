@@ -12,7 +12,7 @@ export default {
     mounted() {
         console.log(this)
         console.log(this.$slots)
-        console.log('哈哈', Object.entries(this.$slots))
+        console.log(Object.entries(this.$slots))
     },
     methods: {
         // rr(comp) {

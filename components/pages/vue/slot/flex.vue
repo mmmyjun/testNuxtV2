@@ -5,8 +5,7 @@ export default {
         console.log()
     },
     render() {
-        const t = this.$slots.default.filter(e => e.tag).map(v => {
-            console.log(v, '哈哈哈哈')
+        const t = this.$slots.default.map(v => {
             return (
                 <div class="flex-item">
                     {v}
