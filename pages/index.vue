@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container bg-white">
     434
   </div>
 </template>

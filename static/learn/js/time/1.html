@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 根据分秒获得对应总s数: '03:28'
+        var t1 = '03:28';
+        if (t1.includes(':')) {
+            var t1Arr = t1.split(':');
+            var t1S = parseInt(t1Arr[0]) * 60 + parseInt(t1Arr[1]);
+            console.log(t1S);
+        } else {
+            
+        }
+    </script>
+</body>
+</html>
